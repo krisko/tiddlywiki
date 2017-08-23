@@ -1,0 +1,158 @@
+created: 20170817102148530
+modified: 20170823060324256
+tags: Tasks
+title: Dashboard
+tmap.id: e69f5f9e-f07b-4ee5-9190-72f76e1d8337
+type: application/x-tiddler
+
+\define droppable-task()
+<$action-listops $tiddler=<<actionTiddler>> $tags="task -[[WIP]] -[[onhold]] -[[done]]"/>
+\end
+\define droppable-wip()
+<$action-listops $tiddler=<<actionTiddler>> $tags="WIP -[[onhold]] -[[done]]"/>
+\end
+\define droppable-onhold()
+<$action-listops $tiddler=<<actionTiddler>> $tags="-[[WIP]] onhold -[[done]]"/>
+\end
+\define droppable-done()
+<$action-listops $tiddler=<<actionTiddler>> $tags="-[[WIP]] -[[onhold]] done"/>
+\end
+
+<table>
+  <tr>
+    <th width=25%>
+        <$droppable actions=<<droppable-task>>>
+        <$button style="background:0; border: none;" >
+        <$action-sendmessage $message="tm-new-tiddler"  $param="NewTask" tags="task" />
+        {{$:/core/images/copy-clipboard}} Tasks to do </$button></$droppable>
+    </th>
+    <th width=25%>
+        <$droppable actions=<<droppable-wip>>>
+        <$button style="background:0; border: none;" >
+        <$action-sendmessage $message="tm-new-tiddler"  $param="NewWIPTask" tags="task [[WIP]]" />
+        {{$:/core/images/refresh-button}} WIP </$button></$droppable>
+    </th>
+    <th width=25%>
+        <$droppable actions=<<droppable-onhold>>>
+        <$button style="background:0; border: none;" >
+        <$action-sendmessage $message="tm-new-tiddler"  $param="NewOnHoldTask" tags="task [[onhold]]" />
+        {{$:/core/images/timestamp-on}} ~OnHold </$button></$droppable>
+    </th>
+    <th width=25%>
+        <$droppable actions=<<droppable-done>>>
+        <$button style="background:0; border: none;" >
+        <$action-sendmessage $message="tm-new-tiddler"  $param="NewDoneTask" tags="task [[done]]" />
+        {{$:/core/images/done-button}} Done </$button></$droppable>
+    </th>
+  </tr>
+ 
+
+<td>
+     <$list filter="[!is[system]tag[task]!tag[Delete]!tag[WIP]!tag[onhold]!tag[done]]+[!sort[created]]">
+<tr>
+
+<$link to={{!!title}}><$view field="title"/></$link>
+     <$button style="background:0; border: 0px dotted green; padding: 0px 1px; float:right; position:relative;left:3px" >
+        <$action-sendmessage $message="tm-edit-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/edit-button}}</$button>
+<br/><$view field="created" format="date" template="0DD mmm 0hh:0mm"/>
+<br/>@@color:red;<$view field="due"/>@@
+<$list filter="[all[current]tags[]sort[title]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<$scrollable class=tc-block-small>
+{{}}
+</$scrollable>
+<$button style="background-color:  #0CDBCC; border: none; padding: 0px 3px;">
+<$action-listops $tiddler={{!!title}} $tags="WIP -[[onhold]] -[[done]]"/>W</$button>
+<$button style="background-color:  #EDA3AF; border: none; padding: 0px 3px;">
+<$action-listops $tiddler={{!!title}} $tags="onhold -[[WIP]] -[[done]]"/>O</$button>
+<$button style="background-color:  #00d910; border: none; padding: 0px 3px;">
+<$action-listops $tiddler={{!!title}} $tags="done -[[WIP]] -[[onhold]]"/>D</$button>
+
+---
+</tr>
+      </$list> 
+</td>
+
+
+
+<td>
+     <$list filter="[!is[system]tag[task]!tag[Delete]tag[WIP]!tag[onhold]!tag[done]]+[!sort[created]]">
+<tr>
+
+<$link to={{!!title}}><$view field="title"/></$link>
+     <$button style="background:0; border: 0px dotted green; padding: 0px 1px; float:right; position:relative;left:3px" >
+        <$action-sendmessage $message="tm-edit-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/edit-button}}</$button>
+<br/><$view field="created" format="date" template="0DD mmm 0hh:0mm"/>
+<br/>@@color:red;<$view field="due"/>@@
+<$list filter="[all[current]tags[]sort[title]]-[[task]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<$scrollable class=tc-block-small>
+{{}}
+</$scrollable>
+<$button style="background-color: #FF8D14; border: none; padding: 0px 3px;">
+<$action-listops $tiddler={{!!title}} $tags="task -[[WIP]] -[[onhold]] -[[done]]"/>T</$button>
+<$button style="background-color:  #EDA3AF; border: none; padding: 0px 3px;">
+<$action-listops $tiddler={{!!title}} $tags="onhold -[[WIP]] -[[done]]"/>O</$button>
+<$button style="background-color:  #00d910; border: none; padding: 0px 3px;">
+<$action-listops $tiddler={{!!title}} $tags="done -[[WIP]] -[[onhold]]"/>D</$button>
+
+---
+</tr>
+      </$list> 
+</td>
+
+
+
+<td>
+     <$list filter="[!is[system]tag[task]!tag[Delete]!tag[WIP]tag[onhold]!tag[done]]+[!sort[created]]">
+<tr>
+
+<$link to={{!!title}}><$view field="title"/></$link>
+     <$button style="background:0; border: 0px dotted green; padding: 0px 1px; float:right; position:relative;left:3px" >
+        <$action-sendmessage $message="tm-edit-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/edit-button}}</$button>
+<br/><$view field="created" format="date" template="0DD mmm 0hh:0mm"/>
+<br/>@@color:red;<$view field="due"/>@@
+<$list filter="[all[current]tags[]sort[title]]-[[task]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<$scrollable class=tc-block-small>
+{{}}
+</$scrollable>
+<$button style="background-color: #FF8D14; border: none; padding: 0px 3px;">
+<$action-listops $tiddler={{!!title}} $tags="task -[[WIP]] -[[onhold]] -[[done]]"/>T</$button>
+<$button style="background-color:  #0CDBCC; border: none; padding: 0px 3px;">
+<$action-listops $tiddler={{!!title}} $tags="WIP -[[onhold]] -[[done]]"/>W</$button>
+<$button style="background-color:  #00d910; border: none; padding: 0px 3px;">
+<$action-listops $tiddler={{!!title}} $tags="done -[[WIP]] -[[onhold]]"/>D</$button>
+
+---
+</tr>
+      </$list> 
+</td>
+
+
+
+<td>
+     <$list filter="[!is[system]tag[task]!tag[Delete]!tag[WIP]!tag[onhold]tag[done]]+[!sort[created]]">
+<tr>
+
+<$link to={{!!title}}><$view field="title"/></$link>
+     <$button style="background:0; border: 0px dotted green; padding: 0px 1px; float:right; position:relative;left:3px" >
+        <$action-sendmessage $message="tm-edit-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/edit-button}}</$button>
+<br/><$view field="created" format="date" template="0DD mmm 0hh:0mm"/>
+<br/>@@color:red;<$view field="due"/>@@
+<$list filter="[all[current]tags[]sort[title]]-[[task]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<$scrollable class=tc-block-small>
+{{}}
+</$scrollable>
+<$button style="background-color: #FF8D14; border: none; padding: 0px 3px;">
+<$action-listops $tiddler={{!!title}} $tags="task -[[WIP]] -[[onhold]] -[[done]]"/>T</$button>
+<$button style="background-color:  #0CDBCC; border: none; padding: 0px 3px;">
+<$action-listops $tiddler={{!!title}} $tags="WIP -[[onhold]] -[[done]]"/>W</$button>
+<$button style="background-color:  #EDA3AF; border: none; padding: 0px 3px;">
+<$action-listops $tiddler={{!!title}} $tags="onhold -[[WIP]] -[[done]]"/>O</$button>
+<$button style="background-color:  #EC0202; border: none; padding: 0px 3px;">
+<$action-sendmessage $message="tm-notify" $param="Archived"/>
+<$action-listops $tiddler={{!!title}} $tags="Delete -[[done]] -[[WIP]] -[[onhold]]"/>A</$button>
+
+---
+</tr>
+      </$list> 
+</td>
+</table>

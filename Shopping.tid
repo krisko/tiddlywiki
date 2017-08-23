@@ -1,0 +1,59 @@
+created: 20170816112245920
+modified: 20170823080636097
+tags: toc
+title: Shopping
+tmap.id: 5fdb299a-125f-42a5-b79d-5864722942bc
+type: application/x-tiddler
+
+<$button style="background: 0; border:none">
+<$action-sendmessage $message="tm-new-tiddler" title="Item2Buy" tags="Shopping" amount="" bestprice="" ppu="" saleend="" store="" text='<$checkbox tag="later"> Do not need this?</$checkbox>
+
+|! Price |! Amount |! PPU |! Store |! Sale |! Date |'/>
+[img width=30 [img/shoppingcart.png]]
+</$button>
+
+<style>
+
+.smallfont {
+    fontsize: 1em;
+    color: red;
+}
+
+</style>
+
+<table>
+<tr>
+  <td>
+    <th colspan=2 style="text-align:left;"> ''Shopping List'' </th>
+  </td>
+  <td>
+    <th colspan=2 style="text-align:left;"> ''Bought Items'' </th>
+  </td>
+</tr>
+<td>
+      <$list filter="[!is[system]tag[Shopping]!tag[later]] +[sort[title]]">
+      <tr>
+        <$checkbox tag="later">
+          <$link to={{!!title}}><$view field="title"/></$link>
+     <$button style="background:0; border: 1px dotted green; padding: 0px 1px; float:right; position:relative;left:3px" >
+        <$action-sendmessage $message="tm-edit-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/edit-button}}</$button>
+        <br/>&nbsp;&emsp;@@color:grey;<$view field="bestprice"/> <$view field="amount"/> <$view field="ppu"/>@@ @@color:green;<$view field="store"/>@@ @@color:darkorange; <$view field="saleend"/>&nbsp;@@
+        </$checkbox> 
+      </tr>
+      </$list>
+</td>
+<td>
+      <$list filter="[!is[system]tag[Shopping]tag[later]] +[sort[title]]">
+      <tr>
+        <$checkbox tag="later">
+          <$link to={{!!title}}><$view field="title"/></$link>
+        <$button style="background:0; border: 1px dotted red; padding: 0px 1px; float:right; position:relative;left:7px" >
+        <$action-sendmessage $message="tm-delete-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/close-button}}</$button>
+     <$button style="background:0; border: 1px dotted green; padding: 0px 1px; float:right; position:relative;left:3px" >
+        <$action-sendmessage $message="tm-edit-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/edit-button}}</$button>
+        <br/>&nbsp;&emsp;@@color:grey;<$view field="bestprice"/> <$view field="amount"/> <$view field="ppu"/>@@ @@color:green;<$view field="store"/>@@ @@color:darkorange; <$view field="saleend"/>&nbsp;@@
+        </$checkbox> 
+      </tr>
+      </$list>
+</td>
+</table>
