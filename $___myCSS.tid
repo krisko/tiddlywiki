@@ -1,0 +1,36 @@
+created: 20170803080531627
+list: 
+modified: 20170818073856353
+tags: $:/tags/Stylesheet
+title: $:/_myCSS
+type: text/css
+
+.tc-tagged-red .tc-title {
+	background-color:red;
+        color: black;
+}
+
+.tc-tagged-green .tc-title {
+	background-color:green;
+        color: black;
+}
+
+.tc-tagged-blue .tc-title {
+	background-color:blue;
+        color: white;
+}
+
+.tc-tagged-yellow .tc-title {
+	background-color:yellow;
+        color: black;
+}
+
+.tc-tagged-orange .tc-title {
+	background-color:orange;
+        color: black;
+}
+
+.tc-tagged-black .tc-title {
+	background-color:black;
+        color: white;
+}
