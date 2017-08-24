@@ -1,5 +1,5 @@
 created: 20170817102148530
-modified: 20170823060324256
+modified: 20170824061806685
 tags: Tasks
 title: Dashboard
 tmap.id: e69f5f9e-f07b-4ee5-9190-72f76e1d8337
@@ -23,25 +23,25 @@ type: application/x-tiddler
     <th width=25%>
         <$droppable actions=<<droppable-task>>>
         <$button style="background:0; border: none;" >
-        <$action-sendmessage $message="tm-new-tiddler"  $param="NewTask" tags="task" />
+        <$action-sendmessage $message="tm-new-tiddler"  $param="NewTask" tags="task" assignee="N/A" due="-" />
         {{$:/core/images/copy-clipboard}} Tasks to do </$button></$droppable>
     </th>
     <th width=25%>
         <$droppable actions=<<droppable-wip>>>
         <$button style="background:0; border: none;" >
-        <$action-sendmessage $message="tm-new-tiddler"  $param="NewWIPTask" tags="task [[WIP]]" />
+        <$action-sendmessage $message="tm-new-tiddler"  $param="NewWIPTask" tags="task [[WIP]]" assignee="N/A" due="-" />
         {{$:/core/images/refresh-button}} WIP </$button></$droppable>
     </th>
     <th width=25%>
         <$droppable actions=<<droppable-onhold>>>
         <$button style="background:0; border: none;" >
-        <$action-sendmessage $message="tm-new-tiddler"  $param="NewOnHoldTask" tags="task [[onhold]]" />
+        <$action-sendmessage $message="tm-new-tiddler"  $param="NewOnHoldTask" tags="task [[onhold]]" assignee="N/A" due="-" />
         {{$:/core/images/timestamp-on}} ~OnHold </$button></$droppable>
     </th>
     <th width=25%>
         <$droppable actions=<<droppable-done>>>
         <$button style="background:0; border: none;" >
-        <$action-sendmessage $message="tm-new-tiddler"  $param="NewDoneTask" tags="task [[done]]" />
+        <$action-sendmessage $message="tm-new-tiddler"  $param="NewDoneTask" tags="task [[done]]" assignee="N/A" due="-" />
         {{$:/core/images/done-button}} Done </$button></$droppable>
     </th>
   </tr>
@@ -54,9 +54,9 @@ type: application/x-tiddler
 <$link to={{!!title}}><$view field="title"/></$link>
      <$button style="background:0; border: 0px dotted green; padding: 0px 1px; float:right; position:relative;left:3px" >
         <$action-sendmessage $message="tm-edit-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/edit-button}}</$button>
-<br/><$view field="created" format="date" template="0DD mmm 0hh:0mm"/>
-<br/>@@color:red;<$view field="due"/>@@
-<$list filter="[all[current]tags[]sort[title]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<br/><$view field="created" format="date" template="0DD mmm 0hh:0mm"/> (@@color:red;<$view field="due"/>@@)
+<br/><$list filter="[all[current]tags[]sort[title]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<br/>@@color:grey;Assignee - @@@@color:orange;<$view field="assignee"/>@@
 <$scrollable class=tc-block-small>
 {{}}
 </$scrollable>
@@ -81,9 +81,9 @@ type: application/x-tiddler
 <$link to={{!!title}}><$view field="title"/></$link>
      <$button style="background:0; border: 0px dotted green; padding: 0px 1px; float:right; position:relative;left:3px" >
         <$action-sendmessage $message="tm-edit-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/edit-button}}</$button>
-<br/><$view field="created" format="date" template="0DD mmm 0hh:0mm"/>
-<br/>@@color:red;<$view field="due"/>@@
-<$list filter="[all[current]tags[]sort[title]]-[[task]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<br/><$view field="created" format="date" template="0DD mmm 0hh:0mm"/> (@@color:red;<$view field="due"/>@@)
+<br/><$list filter="[all[current]tags[]sort[title]]-[[task]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<br/>@@color:grey;Assignee - @@@@color:orange;<$view field="assignee"/>@@
 <$scrollable class=tc-block-small>
 {{}}
 </$scrollable>
@@ -108,9 +108,9 @@ type: application/x-tiddler
 <$link to={{!!title}}><$view field="title"/></$link>
      <$button style="background:0; border: 0px dotted green; padding: 0px 1px; float:right; position:relative;left:3px" >
         <$action-sendmessage $message="tm-edit-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/edit-button}}</$button>
-<br/><$view field="created" format="date" template="0DD mmm 0hh:0mm"/>
-<br/>@@color:red;<$view field="due"/>@@
-<$list filter="[all[current]tags[]sort[title]]-[[task]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<br/><$view field="created" format="date" template="0DD mmm 0hh:0mm"/> (@@color:red;<$view field="due"/>@@)
+<br/><$list filter="[all[current]tags[]sort[title]]-[[task]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<br/>@@color:grey;Assignee - @@@@color:orange;<$view field="assignee"/>@@
 <$scrollable class=tc-block-small>
 {{}}
 </$scrollable>
@@ -135,9 +135,9 @@ type: application/x-tiddler
 <$link to={{!!title}}><$view field="title"/></$link>
      <$button style="background:0; border: 0px dotted green; padding: 0px 1px; float:right; position:relative;left:3px" >
         <$action-sendmessage $message="tm-edit-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/edit-button}}</$button>
-<br/><$view field="created" format="date" template="0DD mmm 0hh:0mm"/>
-<br/>@@color:red;<$view field="due"/>@@
-<$list filter="[all[current]tags[]sort[title]]-[[task]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<br/><$view field="created" format="date" template="0DD mmm 0hh:0mm"/> (@@color:red;<$view field="due"/>@@)
+<br/><$list filter="[all[current]tags[]sort[title]]-[[task]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<br/>@@color:grey;Assignee - @@@@color:orange;<$view field="assignee"/>@@
 <$scrollable class=tc-block-small>
 {{}}
 </$scrollable>
