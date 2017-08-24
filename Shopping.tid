@@ -1,5 +1,5 @@
 created: 20170816112245920
-modified: 20170823080636097
+modified: 20170823164143004
 tags: toc
 title: Shopping
 tmap.id: 5fdb299a-125f-42a5-b79d-5864722942bc
@@ -8,18 +8,9 @@ type: application/x-tiddler
 <$button style="background: 0; border:none">
 <$action-sendmessage $message="tm-new-tiddler" title="Item2Buy" tags="Shopping" amount="" bestprice="" ppu="" saleend="" store="" text='<$checkbox tag="later"> Do not need this?</$checkbox>
 
-|! Price |! Amount |! PPU |! Store |! Sale |! Date |'/>
+|! Price |! Amount |! PPU |! Store |! Sale |! Date |!Note |'/>
 [img width=30 [img/shoppingcart.png]]
 </$button>
-
-<style>
-
-.smallfont {
-    fontsize: 1em;
-    color: red;
-}
-
-</style>
 
 <table>
 <tr>
