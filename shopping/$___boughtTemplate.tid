@@ -1,0 +1,15 @@
+created: 20170824200541592
+modified: 20170824200753194
+tags: 
+title: $:/_boughtTemplate
+
+      <tr>
+        <$checkbox tag="later">
+          <$link to={{!!title}}><$view field="title"/></$link>
+        <$button style="background:0; border: 1px dotted red; padding: 0px 1px; float:right; position:relative;left:7px" >
+        <$action-sendmessage $message="tm-delete-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/close-button}}</$button>
+     <$button style="background:0; border: 1px dotted green; padding: 0px 1px; float:right; position:relative;left:3px" >
+        <$action-sendmessage $message="tm-edit-tiddler"  tiddlerTitle={{!!title}}/>{{$:/core/images/edit-button}}</$button>
+        <br/>&nbsp;&emsp;@@color:grey;<$view field="bestprice"/> <$view field="amount"/> <$view field="ppu"/>@@ @@color:green;<$view field="store"/>@@ @@color:darkorange; <$view field="saleend"/>&nbsp;@@
+        </$checkbox> 
+      </tr>

@@ -1,0 +1,35 @@
+created: 20141202200448128
+creator: Tobias Beer
+modified: 20170828131717334
+modifier: Tobias Beer
+revision: 0
+tags: $:/tags/Macro
+title: $:/_macro/list-search
+type: text/vnd.tiddlywiki
+
+\define list-search(
+filter:"[tags[]]",
+search:"search:title",
+state:"$:/_list-search",
+template:"$:/_boughtTemplate",
+placeholder:"Filter",
+limit:1000
+)
+<div>
+<$edit-text
+tiddler="$state$"
+type="search"
+tag="input"
+default=""
+placeholder="$placeholder$"/>
+</div>
+
+<$reveal state="$state$" type="match" text="">
+<$list filter="$filter$+[limit[$limit$]]+[sort[title]]" template="$template$"/>
+</$reveal>
+
+<$reveal state="$state$" type="nomatch" text="">
+<$list filter="$filter$+[$search${$state$}]+[limit[$limit$]]+[sort[title]]" template="$template$"/>
+</$reveal>
+
+\end
